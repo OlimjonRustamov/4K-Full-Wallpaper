@@ -5,9 +5,34 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import uz.olimjon_rustamov.a4kfullwallpaper.databinding.ItemPhotoBinding
+import uz.olimjon_rustamov.a4kfullwallpaper.databinding.LoadingSrollBinding
+import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Hit
 import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Photos
 
-class TestAdapter(var photos: Photos) : RecyclerView.Adapter<TestAdapter.Vh>() {
+class TestAdapter() : RecyclerView.Adapter<TestAdapter.Vh>() {
+    var photos = Photos(ArrayList<Hit>(), 0, 0)
+
+    fun addPhoto(new: Photos) {
+        if (photos.hits.size != 0 && new.hits.size!=0) {
+            if (new.hits[new.hits.size - 1].previewURL != photos.hits[photos.hits.size - 1].previewURL) {
+                new.hits.forEach {
+                    photos.hits.add(it)
+                }
+            }
+        } else {
+            new.hits.forEach {
+                photos.hits.add(it)
+            }
+        }
+        notifyDataSetChanged()
+    }
+
+    fun getSize() = photos.hits.size
+
+    fun clear() {
+        photos = Photos(ArrayList(), 0 , 0)
+    }
+
     inner class Vh(var itemBinding: ItemPhotoBinding) : RecyclerView.ViewHolder(itemBinding.root) {
         fun onBind(url: String) {
             Picasso.get().load(url).into(itemBinding.itemPhotoIv)

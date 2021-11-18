@@ -7,5 +7,15 @@ import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Photos
 
 interface ApiService {
     @GET("api")
-    suspend fun getHome(@Query("key") key: String, @Query("q")tab:String): Photos
+    suspend fun getHome(
+        @Query("key") key: String,
+        @Query("q") tab: String
+    ): Photos
+
+    @GET("api")
+    suspend fun getScroll(
+        @Query("key") key: String,
+        @Query("q") tab: String,
+        @Query("page") page: Int
+    ): Photos
 }

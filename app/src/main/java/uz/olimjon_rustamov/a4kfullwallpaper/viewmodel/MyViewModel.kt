@@ -20,6 +20,7 @@ import uz.olimjon_rustamov.a4kfullwallpaper.utils.Resource
 class MyViewModel:ViewModel() {
 
     private var photos = MutableLiveData<Resource<Photos>>()
+    private var scrollphotos = MutableLiveData<Resource<Photos>>()
 
 
     fun getPhotos(tab:String): LiveData<Resource<Photos>> {
@@ -32,10 +33,19 @@ class MyViewModel:ViewModel() {
                 photos.postValue(Resource.error(e.toString(), null))
             }
         }
-
-
-
-
         return photos
+    }
+
+    fun getScroll(tab:String, page:Int): LiveData<Resource<Photos>> {
+        viewModelScope.launch {
+            scrollphotos.postValue(Resource.loading(null))
+            try {
+                val response = ApiHelper.getScrollPhotos(tab, page)
+                scrollphotos.postValue(Resource.success(response))
+            } catch (e: Exception) {
+                scrollphotos.postValue(Resource.error(e.toString(), null))
+            }
+        }
+        return scrollphotos
     }
 }

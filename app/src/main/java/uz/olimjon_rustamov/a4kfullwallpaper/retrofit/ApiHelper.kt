@@ -8,4 +8,7 @@ object ApiHelper {
     suspend fun getHomePhotos(tab:String):Photos {
         return ApiClient.apiService.getHome(key, tab)
     }
+    suspend fun getScrollPhotos(tab:String, page:Int):Photos {
+        return ApiClient.apiService.getScroll(key, tab, page)
+    }
 }

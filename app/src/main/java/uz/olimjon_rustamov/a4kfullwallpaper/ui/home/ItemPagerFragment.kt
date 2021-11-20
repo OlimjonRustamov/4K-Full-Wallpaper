@@ -50,6 +50,7 @@ class ItemPagerFragment : Fragment() {
                     vb.vpRv.visibility = View.VISIBLE
                     vb.homeProgress.visibility = View.GONE
                     if (it.data != null) {
+                        page++
                         adapter = TestAdapter()
                         adapter.addPhoto(it.data)
                         vb.vpRv.layoutManager = GridLayoutManager(vb.root.context, 3)

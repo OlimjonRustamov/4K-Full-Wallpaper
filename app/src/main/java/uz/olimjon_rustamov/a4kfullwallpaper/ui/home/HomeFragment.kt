@@ -24,8 +24,6 @@ import uz.olimjon_rustamov.a4kfullwallpaper.MainActivity
 import uz.olimjon_rustamov.a4kfullwallpaper.R
 import uz.olimjon_rustamov.a4kfullwallpaper.TestAdapter
 import uz.olimjon_rustamov.a4kfullwallpaper.databinding.FragmentHomeBinding
-import uz.olimjon_rustamov.a4kfullwallpaper.databinding.LoadingSrollBinding
-import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Photos
 import uz.olimjon_rustamov.a4kfullwallpaper.ui.home.adapters.HomePagerAdapter
 import uz.olimjon_rustamov.a4kfullwallpaper.utils.Status
 import uz.olimjon_rustamov.a4kfullwallpaper.viewmodel.MyViewModel
@@ -146,6 +144,7 @@ class HomeFragment : Fragment() {
                 Status.SUCCESS -> {
                     page++
                     if (it.data != null) {
+                        page++
                         vb.searchProgress.visibility = View.GONE
                         vb.searchRv.visibility = View.VISIBLE
                         adapter.addPhoto(it.data)

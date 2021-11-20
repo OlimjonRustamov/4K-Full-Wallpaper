@@ -7,4 +7,6 @@
     <string name="random">Random</string>
     <string name="favourite">Favourite</string>
     <string name="search">Search</string>
+    <string name="about">About</string>
+    <string name="photo_source_pixabay_com">Photo source: pixabay.com</string>
 </resources>

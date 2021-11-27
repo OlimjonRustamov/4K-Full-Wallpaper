@@ -3,11 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/my_black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.random.RandomFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/random_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/random" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/loading_random_progress"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_height="0dp" />
+
+    <ProgressBar
+        android:id="@+id/random_progress"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ProgressBar
+        android:id="@+id/loading_random_progress"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/random_rv"
+        android:visibility="gone"
+        android:background="@color/my_black"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

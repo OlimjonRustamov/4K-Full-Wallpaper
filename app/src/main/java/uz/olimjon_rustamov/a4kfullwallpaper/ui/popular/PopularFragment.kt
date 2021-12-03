@@ -1,5 +1,6 @@
 package uz.olimjon_rustamov.a4kfullwallpaper.ui.popular
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.olimjon_rustamov.a4kfullwallpaper.MainActivity
 import uz.olimjon_rustamov.a4kfullwallpaper.R
 import uz.olimjon_rustamov.a4kfullwallpaper.TestAdapter
+import uz.olimjon_rustamov.a4kfullwallpaper.ViewActivity
 import uz.olimjon_rustamov.a4kfullwallpaper.databinding.FragmentPopularBinding
+import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Hit
 import uz.olimjon_rustamov.a4kfullwallpaper.utils.Status
 import uz.olimjon_rustamov.a4kfullwallpaper.viewmodel.MyViewModel
 
@@ -71,6 +74,13 @@ class PopularFragment : Fragment() {
                 }
             }
         })
+        adapter.itemClick = object:TestAdapter.OnItemClicked{
+            override fun onClick(hit: Hit) {
+                val intent = Intent(vb.root.context, ViewActivity::class.java)
+                intent.putExtra("hit", hit)
+                startActivity(intent)
+            }
+        }
     }
 
     private fun rvScrolled() {

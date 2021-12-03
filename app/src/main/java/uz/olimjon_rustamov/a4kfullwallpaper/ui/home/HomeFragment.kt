@@ -1,5 +1,6 @@
 package uz.olimjon_rustamov.a4kfullwallpaper.ui.home
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -23,7 +24,9 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.olimjon_rustamov.a4kfullwallpaper.MainActivity
 import uz.olimjon_rustamov.a4kfullwallpaper.R
 import uz.olimjon_rustamov.a4kfullwallpaper.TestAdapter
+import uz.olimjon_rustamov.a4kfullwallpaper.ViewActivity
 import uz.olimjon_rustamov.a4kfullwallpaper.databinding.FragmentHomeBinding
+import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Hit
 import uz.olimjon_rustamov.a4kfullwallpaper.ui.home.adapters.HomePagerAdapter
 import uz.olimjon_rustamov.a4kfullwallpaper.utils.Status
 import uz.olimjon_rustamov.a4kfullwallpaper.viewmodel.MyViewModel

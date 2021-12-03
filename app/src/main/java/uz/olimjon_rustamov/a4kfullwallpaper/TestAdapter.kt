@@ -5,12 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import uz.olimjon_rustamov.a4kfullwallpaper.databinding.ItemPhotoBinding
-import uz.olimjon_rustamov.a4kfullwallpaper.databinding.LoadingSrollBinding
 import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Hit
 import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Photos
 
 class TestAdapter() : RecyclerView.Adapter<TestAdapter.Vh>() {
     var photos = Photos(ArrayList<Hit>(), 0, 0)
+    var itemClick: OnItemClicked?=null
+
 
     fun addPhoto(new: Photos) {
         if (photos.hits.size != 0 && new.hits.size!=0) {
@@ -34,8 +35,13 @@ class TestAdapter() : RecyclerView.Adapter<TestAdapter.Vh>() {
     }
 
     inner class Vh(var itemBinding: ItemPhotoBinding) : RecyclerView.ViewHolder(itemBinding.root) {
-        fun onBind(url: String) {
+        fun onBind(url: String, hit:Hit) {
             Picasso.get().load(url).into(itemBinding.itemPhotoIv)
+            itemView.setOnClickListener {
+                if (itemClick != null) {
+                    itemClick!!.onClick(hit)
+                }
+            }
         }
     }
 
@@ -44,8 +50,12 @@ class TestAdapter() : RecyclerView.Adapter<TestAdapter.Vh>() {
     }
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind(photos.hits[position].previewURL)
+        holder.onBind(photos.hits[position].previewURL!!, photos.hits[position])
     }
 
     override fun getItemCount(): Int = photos.hits.size
+
+    interface OnItemClicked{
+        fun onClick(hit:Hit)
+    }
 }

@@ -1,5 +1,6 @@
 package uz.olimjon_rustamov.a4kfullwallpaper.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import uz.olimjon_rustamov.a4kfullwallpaper.TestAdapter
+import uz.olimjon_rustamov.a4kfullwallpaper.ViewActivity
 import uz.olimjon_rustamov.a4kfullwallpaper.databinding.FragmentItemPagerBinding
+import uz.olimjon_rustamov.a4kfullwallpaper.retrofit.model.Hit
 import uz.olimjon_rustamov.a4kfullwallpaper.utils.Status
 import uz.olimjon_rustamov.a4kfullwallpaper.viewmodel.MyViewModel
 
@@ -55,6 +58,13 @@ class ItemPagerFragment : Fragment() {
                         adapter.addPhoto(it.data)
                         vb.vpRv.layoutManager = GridLayoutManager(vb.root.context, 3)
                         vb.vpRv.adapter = adapter
+                        adapter.itemClick = object:TestAdapter.OnItemClicked{
+                            override fun onClick(hit: Hit) {
+                                val intent = Intent(vb.root.context, ViewActivity::class.java)
+                                intent.putExtra("hit", hit)
+                                startActivity(intent)
+                            }
+                        }
                     }
                     scrollChanged()
                 }

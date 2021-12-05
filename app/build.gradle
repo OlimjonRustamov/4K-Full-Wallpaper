@@ -65,6 +65,9 @@ dependencies {
     //blurkit
     implementation 'io.alterac.blurkit:blurkit:1.1.0'
 
+    //circle imageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
     //paging adapter
     implementation("androidx.paging:paging-runtime:3.1.0")
 

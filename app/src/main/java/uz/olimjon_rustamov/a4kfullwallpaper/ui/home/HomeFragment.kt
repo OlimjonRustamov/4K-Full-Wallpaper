@@ -153,6 +153,13 @@ class HomeFragment : Fragment() {
                         adapter.addPhoto(it.data)
                         vb.searchRv.adapter = adapter
                         vb.searchRv.layoutManager = GridLayoutManager(vb.root.context, 3)
+                        adapter.itemClick = object:TestAdapter.OnItemClicked{
+                            override fun onClick(hit: Hit) {
+                                val intent = Intent(vb.root.context, ViewActivity::class.java)
+                                intent.putExtra("hit", hit)
+                                startActivity(intent)
+                            }
+                        }
                     }
                     rvScrolled()
                 }
